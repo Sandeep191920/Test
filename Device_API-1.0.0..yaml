@@ -1,0 +1,81 @@
+swagger: '2.0'
+info:
+  title: Device API
+  x-ibm-name: device-api
+  version: 1.0.0
+x-ibm-configuration:
+  cors:
+    enabled: true
+  gateway: datapower-api-gateway
+  type: rest
+  phase: realized
+  enforced: true
+  testable: true
+  assembly:
+    execute:
+      - invoke:
+          version: 2.0.0
+          title: invoke
+          backend-type: detect
+          header-control:
+            type: blocklist
+            values: []
+          parameter-control:
+            type: allowlist
+            values: []
+          timeout: 60
+          verb: keep
+          chunked-uploads: true
+          persistent-connection: true
+          target-url: https://api.restful-api.dev/objects
+          follow-redirects: false
+          inject-proxy-headers: true
+  properties:
+    target-url:
+      value: http://example.com/operation-name
+      description: The URL of the target service
+      encoded: false
+  activity-log:
+    enabled: true
+    success-content: activity
+    error-content: payload
+  servers:
+    - url: ''
+  oauth-servers: []
+basePath: /device-api
+paths:
+  /testing:
+    parameters:
+      - name: Id
+        in: query
+        type: number
+    get:
+      responses:
+        '200':
+          description: success
+          schema:
+            type: string
+securityDefinitions:
+  clientID:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+  client_secret:
+    type: apiKey
+    x-key-type: client_secret
+    name: X-IBM-Client-Secret
+    in: header
+security:
+  - clientID: []
+    client_secret: []
+schemes:
+  - https
+externalDocs:
+  url: https://api.restful-api.dev/objects
+parameters:
+  ID1:
+    required: true
+    in: query
+    name: Product Id
+    type: string
+    format: byte
