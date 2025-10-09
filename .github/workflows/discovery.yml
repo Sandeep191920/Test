@@ -3,10 +3,10 @@ name: Sync Discovered API with APIConnect
 on: [pull_request, workflow_dispatch, push]
  
 env:
-  API_HOST: us-east-a.apiconnect.automation.ibm.com
+  API_HOST: eu-central-a.apiconnect.automation.ibm.com
   PLATFORM_API_PREFIX: platform-api
-  PROVIDER_ORG: api-connect-sg
-  API_FILES: WeatherApi-1.0.0.yaml  # Update this path to your actual API files
+  PROVIDER_ORG: api-connect-t7
+  API_FILES: Order-2.0.0.yaml  # Update this path to your actual API files
  
 jobs:
   run-discovery:
@@ -25,7 +25,7 @@ jobs:
         api_host: ${{ env.API_HOST }}
         platform_api_prefix: ${{ env.PLATFORM_API_PREFIX }}
         provider_org: ${{ env.PROVIDER_ORG }}
-        api_key: ${{ secrets.TESTINGAPI }}
+        api_key: ${{ secrets.APIKEY }}
         if: env.API_FILES
         api_files: ${{ env.API_FILES }}
         else if: env.API_FOLDERS
