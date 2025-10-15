@@ -1,0 +1,64 @@
+swagger: '2.0'
+info:
+  title: OrderAPI
+  x-ibm-name: orderapi
+  version: 1.0.0
+  contact:
+    name: Sandeep
+    url: https://advintek.com.sg/
+  description: This is the Order Booking
+x-ibm-configuration:
+  cors:
+    enabled: true
+  type: rest
+  phase: realized
+  enforced: true
+  testable: true
+  servers:
+    - url: https://api.us-east-a.apiconnect.ibmappdomain.cloud/api_connect/dev/orderapi
+      description: ''
+      type:
+        - production
+        - development
+basePath: /api_connect/dev/orderapi
+paths:
+  /Objects:
+    get:
+      responses:
+        '200':
+          description: success
+          schema:
+            type: string
+      consumes: []
+      produces: []
+  /Objects/id:
+    parameters:
+      - name: id
+        in: query
+        type: number
+    get:
+      responses:
+        '200':
+          description: success
+          schema:
+            type: string
+securityDefinitions:
+  clientID:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+  client_secret:
+    type: apiKey
+    x-key-type: client_secret
+    name: X-IBM-Client-Secret
+    in: header
+security:
+  - clientID: []
+    client_secret: []
+schemes:
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json
+host: api.us-east-a.apiconnect.ibmappdomain.cloud
